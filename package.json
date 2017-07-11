@@ -1,0 +1,22 @@
+{
+  "name": "async-programming",
+  "version": "1.0.0",
+  "description": "simple weather fetching application",
+  "main": "hello-async.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shery11/node-async.git"
+  },
+  "author": "Shaharyar Kirmani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shery11/node-async/issues"
+  },
+  "homepage": "https://github.com/Shery11/node-async#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
