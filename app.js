@@ -2,16 +2,38 @@
 var weather = require('./weather.js');
 var location = require('./location.js');
 
-weather(function(currentWeather){
-	console.log(currentWeather);
-});
+// for command line user input
+var argv = require('yargs').options(
+   	'location',{
+        demand :false,
+        alias : 'l',
+        description: 'Enter city name',
+        type: 'string'
+   	
+   }).help('help').argv;
 
-location(function(location){
-	
-	if(location !== 'undefined'){
-		console.log('city '+ location.city);
-		console.log('log/lat '+ location.loc);
-	}else{
-		console.log('unable to fetch location');
-	}
-})
+
+if(typeof argv.l === 'string' && argv.l.length > 0){
+  
+   weather(argv.l,function(currentWeather){
+	 console.log(currentWeather);
+   });
+
+}else{
+    
+    location(function(location){
+	    
+	    if(location){
+			weather(location.city,function(currentWeather){
+			 console.log(currentWeather);
+            });
+		}else{
+			console.log('unable to fetch location');
+		}
+    
+    });
+}
+
+
+
+
