@@ -15,23 +15,30 @@ var argv = require('yargs').options(
 
 if(typeof argv.l === 'string' && argv.l.length > 0){
   
-   weather(argv.l,function(currentWeather){
-	 console.log(currentWeather);
+   weather(argv.l).then(function(data){
+
+     console.log(data);
+
+   },function(error){
+     console.log(error);
    });
 
 }else{
+
+
+    location().then(function(location){
+        
+        weather(location).then(function(data){
+          console.log(data);
+        },function(error){
+         console.log('Unable to fetch weather')
+        });
     
-    location(function(location){
-	    
-	    if(location){
-			weather(location.city,function(currentWeather){
-			 console.log(currentWeather);
-            });
-		}else{
-			console.log('unable to fetch location');
-		}
+    },function(error){
+      console.log(error);
+    })
     
-    });
+   
 }
 
 
